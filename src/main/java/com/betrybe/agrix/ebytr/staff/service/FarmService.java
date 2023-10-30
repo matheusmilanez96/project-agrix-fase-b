@@ -4,6 +4,7 @@ import com.betrybe.agrix.ebytr.staff.entity.Crop;
 import com.betrybe.agrix.ebytr.staff.entity.Farm;
 import com.betrybe.agrix.ebytr.staff.repository.CropRepository;
 import com.betrybe.agrix.ebytr.staff.repository.FarmRepository;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,9 @@ public class FarmService {
     Long farmId = farm.getId();
     //List<Crop> crops = cropRepository.findByFarmId(farmId);
     return allCrops;
+  }
+
+  public List<Crop> searchCrops(LocalDate start, LocalDate end) {
+    return cropRepository.findByHarvestDateBetween(start, end);
   }
 }

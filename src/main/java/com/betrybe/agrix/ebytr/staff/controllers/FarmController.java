@@ -5,6 +5,7 @@ import com.betrybe.agrix.ebytr.staff.controllers.dto.FarmDto;
 import com.betrybe.agrix.ebytr.staff.entity.Crop;
 import com.betrybe.agrix.ebytr.staff.entity.Farm;
 import com.betrybe.agrix.ebytr.staff.service.FarmService;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -126,6 +128,19 @@ public class FarmController {
         .toList();
 
     return ResponseEntity.ok(allCrops);
+  }
+
+  /**
+   * Método searchCrops.
+   */
+  @GetMapping("/crops/search")
+  public List<CropCreationDto> searchCrops(@RequestParam("start") LocalDate start,
+      @RequestParam("end") LocalDate end) {
+    List<Crop> allCrops = farmService.searchCrops(start, end);
+    return allCrops.stream()
+        .map((crop) -> new CropCreationDto(crop.getId(), crop.getName(), crop.getPlantedArea(),
+            crop.getFarm().getId(), crop.getPlantedDate(), crop.getHarvestDate()))
+        .collect(Collectors.toList());
   }
 
   /**
