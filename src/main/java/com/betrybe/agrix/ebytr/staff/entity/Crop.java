@@ -1,4 +1,4 @@
-package com.betrybe.agrix.models.entities;
+package com.betrybe.agrix.ebytr.staff.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

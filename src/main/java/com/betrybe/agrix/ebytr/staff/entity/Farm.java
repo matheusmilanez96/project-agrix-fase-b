@@ -1,5 +1,6 @@
-package com.betrybe.agrix.models.entities;
+package com.betrybe.agrix.ebytr.staff.entity;
 
+import com.betrybe.agrix.ebytr.staff.entity.Crop;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

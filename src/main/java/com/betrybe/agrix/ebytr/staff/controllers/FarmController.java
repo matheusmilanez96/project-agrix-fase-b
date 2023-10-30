@@ -1,10 +1,10 @@
-package com.betrybe.agrix.controllers;
+package com.betrybe.agrix.ebytr.staff.controllers;
 
-import com.betrybe.agrix.controllers.dto.CropCreationDto;
-import com.betrybe.agrix.controllers.dto.FarmDto;
-import com.betrybe.agrix.models.entities.Crop;
-import com.betrybe.agrix.models.entities.Farm;
-import com.betrybe.agrix.services.FarmService;
+import com.betrybe.agrix.ebytr.staff.controllers.dto.CropCreationDto;
+import com.betrybe.agrix.ebytr.staff.controllers.dto.FarmDto;
+import com.betrybe.agrix.ebytr.staff.entity.Crop;
+import com.betrybe.agrix.ebytr.staff.entity.Farm;
+import com.betrybe.agrix.ebytr.staff.service.FarmService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

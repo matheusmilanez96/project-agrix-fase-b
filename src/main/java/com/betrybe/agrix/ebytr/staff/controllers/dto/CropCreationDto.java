@@ -1,6 +1,6 @@
-package com.betrybe.agrix.controllers.dto;
+package com.betrybe.agrix.ebytr.staff.controllers.dto;
 
-import com.betrybe.agrix.models.entities.Crop;
+import com.betrybe.agrix.ebytr.staff.entity.Crop;
 
 /**
  * CropCreationDto.
