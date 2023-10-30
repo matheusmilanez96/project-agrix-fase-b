@@ -63,6 +63,8 @@ public class FarmController {
     finalMap.put("name", newCrop.getName());
     finalMap.put("plantedArea", newCrop.getPlantedArea());
     finalMap.put("farmId", newCrop.getFarm().getId());
+    finalMap.put("plantedDate", newCrop.getPlantedDate());
+    finalMap.put("harvestDate", newCrop.getHarvestDate());
 
 
     return ResponseEntity.status(HttpStatus.CREATED).body(finalMap);
@@ -97,7 +99,8 @@ public class FarmController {
     Crop crop = optionalCrop.get();
 
     CropCreationDto responseCrop = new CropCreationDto(crop.getId(), crop.getName(),
-        crop.getPlantedArea(), crop.getFarm().getId());
+        crop.getPlantedArea(), crop.getFarm().getId(), crop.getPlantedDate(),
+        crop.getHarvestDate());
 
     return ResponseEntity.ok(responseCrop);
   }
@@ -119,7 +122,7 @@ public class FarmController {
 
     List<CropCreationDto> allCrops = crops.stream()
         .map((crop) -> new CropCreationDto(crop.getId(), crop.getName(), crop.getPlantedArea(),
-            crop.getFarm().getId()))
+            crop.getFarm().getId(), crop.getPlantedDate(), crop.getHarvestDate()))
         .toList();
 
     return ResponseEntity.ok(allCrops);
@@ -133,7 +136,7 @@ public class FarmController {
     List<Crop> allCrops = farmService.getAllCrops();
     return allCrops.stream()
         .map((crop) -> new CropCreationDto(crop.getId(), crop.getName(), crop.getPlantedArea(),
-            crop.getFarm().getId()))
+            crop.getFarm().getId(), crop.getPlantedDate(), crop.getHarvestDate()))
         .collect(Collectors.toList());
   }
 
