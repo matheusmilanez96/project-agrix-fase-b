@@ -2,9 +2,12 @@ package com.betrybe.agrix.ebytr.staff.controllers;
 
 import com.betrybe.agrix.ebytr.staff.controllers.dto.CropCreationDto;
 import com.betrybe.agrix.ebytr.staff.controllers.dto.FarmDto;
+import com.betrybe.agrix.ebytr.staff.controllers.dto.FertilizerDto;
 import com.betrybe.agrix.ebytr.staff.entity.Crop;
 import com.betrybe.agrix.ebytr.staff.entity.Farm;
+import com.betrybe.agrix.ebytr.staff.entity.Fertilizer;
 import com.betrybe.agrix.ebytr.staff.service.FarmService;
+import com.betrybe.agrix.ebytr.staff.service.FertilizerService;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -32,15 +35,24 @@ public class FarmController {
 
   private final FarmService farmService;
 
+  private final FertilizerService fertilizerService;
+
   @Autowired
-  public FarmController(FarmService farmService) {
+  public FarmController(FarmService farmService, FertilizerService fertilizerService) {
     this.farmService = farmService;
+    this.fertilizerService = fertilizerService;
   }
 
   @PostMapping("/farms")
   public ResponseEntity<Farm> createFarm(@RequestBody FarmDto farmDto) {
     Farm newFarm = farmService.insertFarm(farmDto.toFarm());
     return ResponseEntity.status(HttpStatus.CREATED).body(newFarm);
+  }
+
+  @PostMapping("/fertilizers")
+  public ResponseEntity<Fertilizer> createFertilizer(@RequestBody FertilizerDto fertilizerDto) {
+    Fertilizer newFertilizer = fertilizerService.insertFertilizer(fertilizerDto.toFertilizer());
+    return ResponseEntity.status(HttpStatus.CREATED).body(newFertilizer);
   }
 
   /**
