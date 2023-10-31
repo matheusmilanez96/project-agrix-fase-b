@@ -177,4 +177,16 @@ public class FarmController {
         .map((farm) -> new FarmDto(farm.getId(), farm.getName(), farm.getSize()))
         .collect(Collectors.toList());
   }
+
+  /**
+   * Método getAllFertilizers.
+   */
+  @GetMapping("/fertilizers")
+  public List<FertilizerDto> getAllFertilizers() {
+    List<Fertilizer> allFertilizers = fertilizerService.getAllFertilizers();
+    return allFertilizers.stream()
+        .map((fertilizer) -> new FertilizerDto(fertilizer.getId(), fertilizer.getName(),
+            fertilizer.getBrand(), fertilizer.getComposition()))
+        .collect(Collectors.toList());
+  }
 }
