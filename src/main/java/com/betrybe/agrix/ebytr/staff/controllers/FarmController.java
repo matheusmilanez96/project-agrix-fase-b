@@ -85,6 +85,21 @@ public class FarmController {
   }
 
   /**
+   * Método getFertilizerById.
+   */
+  @GetMapping("/fertilizers/{id}")
+  public ResponseEntity<?> getFertilizerById(@PathVariable Long id) {
+    Optional<Fertilizer> optionalFertilizer = fertilizerService.getFertilizerById(id);
+
+    if (optionalFertilizer.isEmpty()) {
+      String message = "Fertilizante não encontrado!";
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    }
+
+    return ResponseEntity.ok(optionalFertilizer.get());
+  }
+
+  /**
    * Método getFarmById.
    */
   @GetMapping("/farms/{farmId}")

@@ -1,8 +1,10 @@
 package com.betrybe.agrix.ebytr.staff.service;
 
+import com.betrybe.agrix.ebytr.staff.entity.Farm;
 import com.betrybe.agrix.ebytr.staff.entity.Fertilizer;
 import com.betrybe.agrix.ebytr.staff.repository.FertilizerRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +28,7 @@ public class FertilizerService {
     return fertilizerRepository.findAll();
   }
 
+  public Optional<Fertilizer> getFertilizerById(Long id) {
+    return fertilizerRepository.findById(id);
+  }
 }
