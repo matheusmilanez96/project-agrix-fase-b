@@ -84,6 +84,9 @@ public class FarmController {
     return ResponseEntity.status(HttpStatus.CREATED).body(finalMap);
   }
 
+  /**
+   * Método associateCropAndFertilizer.
+   */
   @PostMapping("/crops/{cropId}/fertilizers/{fertilizerId}")
   public ResponseEntity<?> associateCropAndFertilizer(@PathVariable Long cropId,
       @PathVariable Long fertilizerId) {
