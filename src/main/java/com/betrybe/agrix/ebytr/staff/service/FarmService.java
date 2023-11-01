@@ -2,6 +2,7 @@ package com.betrybe.agrix.ebytr.staff.service;
 
 import com.betrybe.agrix.ebytr.staff.entity.Crop;
 import com.betrybe.agrix.ebytr.staff.entity.Farm;
+import com.betrybe.agrix.ebytr.staff.entity.Fertilizer;
 import com.betrybe.agrix.ebytr.staff.repository.CropRepository;
 import com.betrybe.agrix.ebytr.staff.repository.FarmRepository;
 import java.time.LocalDate;
@@ -66,5 +67,10 @@ public class FarmService {
 
   public List<Crop> searchCrops(LocalDate start, LocalDate end) {
     return cropRepository.findByHarvestDateBetween(start, end);
+  }
+
+  public void associateCropAndFertilizer(Crop crop, Fertilizer fertilizer) {
+    crop.setFertilizers(fertilizer);
+    cropRepository.save(crop);
   }
 }

@@ -84,6 +84,30 @@ public class FarmController {
     return ResponseEntity.status(HttpStatus.CREATED).body(finalMap);
   }
 
+  @PostMapping("/crops/{cropId}/fertilizers/{fertilizerId}")
+  public ResponseEntity<?> associateCropAndFertilizer(@PathVariable Long cropId,
+      @PathVariable Long fertilizerId) {
+    Optional<Crop> optionalCrop = farmService.getCropById(cropId);
+
+    if (optionalCrop.isEmpty()) {
+      String message = "Plantação não encontrada!";
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    }
+
+    Optional<Fertilizer> optionalFertilizer = fertilizerService.getFertilizerById(fertilizerId);
+
+    if (optionalFertilizer.isEmpty()) {
+      String message = "Fertilizante não encontrado!";
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    }
+
+    Crop crop = optionalCrop.get();
+    Fertilizer fertilizer = optionalFertilizer.get();
+    farmService.associateCropAndFertilizer(crop, fertilizer);
+    String message = "Fertilizante e plantação associados com sucesso!";
+    return ResponseEntity.status(HttpStatus.CREATED).body(message);
+  }
+
   /**
    * Método getFertilizerById.
    */

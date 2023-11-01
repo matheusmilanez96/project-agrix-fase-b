@@ -39,6 +39,14 @@ public class Crop {
   @Column(name = "harvest_date")
   private LocalDate harvestDate;
 
+  @ManyToMany
+  @JoinTable(
+      name = "crop_fertilizers",
+      joinColumns = @JoinColumn(name = "fertilizer_id"),
+      inverseJoinColumns = @JoinColumn(name = "crop_id")
+  )
+  private List<Fertilizer> fertilizers;
+
   public Crop() {
   }
 
@@ -100,5 +108,13 @@ public class Crop {
 
   public void setHarvestDate(LocalDate harvestDate) {
     this.harvestDate = harvestDate;
+  }
+
+  public List<Fertilizer> getFertilizers() {
+    return fertilizers;
+  }
+
+  public void setFertilizers(Fertilizer fertilizer) {
+    this.fertilizers.add(fertilizer);
   }
 }
